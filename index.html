@@ -1,168 +1,339 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="index.css">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>My Google Map</title>
-  <style>
-    /* Always set the map height explicitly to define the size of the div
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="index.css" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>My Google Map</title>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
-       #map {
+      #map {
         height: 100%;
       }
       /* Optional: Makes the sample page fill the window. */
-      html, body {
+      html,
+      body {
         height: 100%;
         margin: 0;
         padding: 0;
       }
-  </style>
-</head>
+    </style>
+  </head>
 
-<body>
-  <div id="map"></div>
-  <script>
-    function initMap(){
-      // Map options
-      var options = {
-        zoom:13,
-        center: {lat:43.7,lng:-79.3},
-        styles: [
-            {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
-            {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
-            {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
+  <body>
+    <div id="map"></div>
+    <script>
+      function initMap() {
+        // Map options
+        var options = {
+          zoom: 13,
+          center: { lat: 43.7, lng: -79.3 },
+          // style designed through https://mapstyle.withgoogle.com/
+          styles: [
             {
-              featureType: 'administrative.locality',
-              elementType: 'labels.text.fill',
-              stylers: [{color: '#d59563'}]
+              elementType: "geometry",
+              stylers: [
+                {
+                  color: "#242f3e"
+                }
+              ]
             },
             {
-              featureType: 'poi',
-              elementType: 'labels.text.fill',
-              stylers: [{color: '#d59563'}]
+              elementType: "labels.text.fill",
+              stylers: [
+                {
+                  color: "#746855"
+                }
+              ]
             },
             {
-              featureType: 'poi.park',
-              elementType: 'geometry',
-              stylers: [{color: '#263c3f'}]
+              elementType: "labels.text.stroke",
+              stylers: [
+                {
+                  color: "#242f3e"
+                }
+              ]
             },
             {
-              featureType: 'poi.park',
-              elementType: 'labels.text.fill',
-              stylers: [{color: '#6b9a76'}]
+              featureType: "administrative.locality",
+              elementType: "labels.text.fill",
+              stylers: [
+                {
+                  color: "#d59563"
+                }
+              ]
             },
             {
-              featureType: 'road',
-              elementType: 'geometry',
-              stylers: [{color: '#38414e'}]
+              featureType: "poi",
+              elementType: "labels.text.fill",
+              stylers: [
+                {
+                  color: "#d59563"
+                }
+              ]
             },
             {
-              featureType: 'road',
-              elementType: 'geometry.stroke',
-              stylers: [{color: '#212a37'}]
+              featureType: "poi.business",
+              stylers: [
+                {
+                  visibility: "off"
+                }
+              ]
             },
             {
-              featureType: 'road',
-              elementType: 'labels.text.fill',
-              stylers: [{color: '#9ca5b3'}]
+              featureType: "poi.park",
+              elementType: "geometry",
+              stylers: [
+                {
+                  color: "#263c3f"
+                }
+              ]
             },
             {
-              featureType: 'road.highway',
-              elementType: 'geometry',
-              stylers: [{color: '#746855'}]
+              featureType: "poi.park",
+              elementType: "labels.text.fill",
+              stylers: [
+                {
+                  color: "#6b9a76"
+                }
+              ]
             },
             {
-              featureType: 'road.highway',
-              elementType: 'geometry.stroke',
-              stylers: [{color: '#1f2835'}]
+              featureType: "poi.school",
+              stylers: [
+                {
+                  visibility: "off"
+                }
+              ]
             },
             {
-              featureType: 'road.highway',
-              elementType: 'labels.text.fill',
-              stylers: [{color: '#f3d19c'}]
+              featureType: "road",
+              stylers: [
+                {
+                  visibility: "on"
+                }
+              ]
             },
             {
-              featureType: 'transit',
-              elementType: 'geometry',
-              stylers: [{color: '#2f3948'}]
+              featureType: "road",
+              elementType: "geometry",
+              stylers: [
+                {
+                  color: "#38414e"
+                }
+              ]
             },
             {
-              featureType: 'transit.station',
-              elementType: 'labels.text.fill',
-              stylers: [{color: '#d59563'}]
+              featureType: "road",
+              elementType: "geometry.stroke",
+              stylers: [
+                {
+                  color: "#212a37"
+                }
+              ]
             },
             {
-              featureType: 'water',
-              elementType: 'geometry',
-              stylers: [{color: '#17263c'}]
+              featureType: "road",
+              elementType: "labels.text.fill",
+              stylers: [
+                {
+                  color: "#9ca5b3"
+                }
+              ]
             },
             {
-              featureType: 'water',
-              elementType: 'labels.text.fill',
-              stylers: [{color: '#515c6d'}]
+              featureType: "road.highway",
+              elementType: "geometry",
+              stylers: [
+                {
+                  color: "#746855"
+                }
+              ]
             },
             {
-              featureType: 'water',
-              elementType: 'labels.text.stroke',
-              stylers: [{color: '#17263c'}]
+              featureType: "road.highway",
+              elementType: "geometry.stroke",
+              stylers: [
+                {
+                  color: "#1f2835"
+                }
+              ]
+            },
+            {
+              featureType: "road.highway",
+              elementType: "labels.text.fill",
+              stylers: [
+                {
+                  color: "#f3d19c"
+                }
+              ]
+            },
+            {
+              featureType: "transit",
+              elementType: "geometry",
+              stylers: [
+                {
+                  color: "#2f3948"
+                }
+              ]
+            },
+            {
+              featureType: "transit.station",
+              elementType: "labels.text.fill",
+              stylers: [
+                {
+                  color: "#d59563"
+                }
+              ]
+            },
+            {
+              featureType: "water",
+              elementType: "geometry",
+              stylers: [
+                {
+                  color: "#17263c"
+                }
+              ]
+            },
+            {
+              featureType: "water",
+              elementType: "labels.text.fill",
+              stylers: [
+                {
+                  color: "#515c6d"
+                }
+              ]
+            },
+            {
+              featureType: "water",
+              elementType: "labels.text.stroke",
+              stylers: [
+                {
+                  color: "#17263c"
+                }
+              ]
             }
           ]
-      }
+        };
 
-      // New map
-      var map = new google.maps.Map(document.getElementById('map'), options);
+        // New map
+        var map = new google.maps.Map(document.getElementById("map"), options);
 
-      // Array of markers
-      var markers = [
-        {
-          coords:{lat:43.71677,lng:-79.2599},
-          iconImage:'images/marker_red.png',
-          content:'<h3>St.Claire, Danforth</h3>'
-        },
-        {
-          coords:{lat:43.63774,lng:-79.4589},
-          iconImage:'images/marker_yellow.png',
-          content:'<h3>Lake Shore Bv W, Colborne Lodge Dr</h3>'
-        }
-      ];
+        // Array of markers
+        var markers = [
+          {
+            coords: { lat: 43.71677, lng: -79.2599 },
+            iconImage: "images/marker_red.png",
+            content: "<h3>St.Claire, Danforth</h3>"
+          },
+          {
+            coords: { lat: 43.63774, lng: -79.4589 },
+            iconImage: "images/marker_yellow.png",
+            content: "<h3>Lake Shore Bv W, Colborne Lodge Dr</h3>"
+          }
+        ];
 
-      // Loop through markers
-      for(var i = 0;i < markers.length;i++){
-        // Add marker
-        addMarker(markers[i]);
-      }
-
-      // Add Marker Function
-      function addMarker(props){
-        var marker = new google.maps.Marker({
-          position:props.coords,
-          map:map,
-          //icon:props.iconImage
-        });
-
-        // Check for customicon
-        if(props.iconImage){
-          // Set icon image
-          marker.setIcon(props.iconImage);
+        // Loop through markers
+        for (var i = 0; i < markers.length; i++) {
+          // Add marker
+          addMarker(markers[i]);
         }
 
-        // Check content
-        if(props.content){
-          var infoWindow = new google.maps.InfoWindow({
-            content:props.content
+        // Add Marker Function
+        function addMarker(props) {
+          var marker = new google.maps.Marker({
+            position: props.coords,
+            map: map
+            //icon:props.iconImage
           });
 
-          marker.addListener('click', function(){
-            infoWindow.open(map, marker);
+          // Check for customicon
+          if (props.iconImage) {
+            // Set icon image
+            marker.setIcon(props.iconImage);
+          }
+
+          // Check content
+          if (props.content) {
+            var infoWindow = new google.maps.InfoWindow({
+              content: props.content
+            });
+
+            marker.addListener("click", function() {
+              infoWindow.open(map, marker);
+            });
+          }
+        }
+
+        var direction_display = new google.maps.DirectionsRenderer();
+        var direction_service = new google.maps.DirectionsService();
+
+        var pointA = new google.maps.LatLng(43.658515, -79.35094);
+        var pointB = new google.maps.LatLng(43.658221, -79.37099);
+
+        direction_display.setMap(map);
+
+        function calculate_route() {
+          var request = {
+            origin: pointA,
+            destination: pointB,
+            travelMode: "DRIVING"
+          };
+
+          direction_service.route(request, function(result, status) {
+            if (status == "OK") {
+              direction_display.setDirections(result);
+            }
           });
         }
+
+        function CenterControl(controlDiv, map) {
+          // Set CSS for the control border.
+          var controlUI = document.createElement("div");
+          controlUI.style.backgroundColor = "#fff";
+          controlUI.style.border = "2px solid #fff";
+          controlUI.style.borderRadius = "3px";
+          controlUI.style.boxShadow = "0 2px 6px rgba(0,0,0,.3)";
+          controlUI.style.cursor = "pointer";
+          controlUI.style.marginTop = "10px";
+          controlUI.style.textAlign = "center";
+          controlUI.title = "Click to recenter the map";
+          controlDiv.appendChild(controlUI);
+
+          // Set CSS for the control interior.
+          var controlText = document.createElement("div");
+          controlText.style.color = "rgb(25,25,25)";
+          controlText.style.fontFamily = "Roboto,Arial,sans-serif";
+          controlText.style.fontSize = "16px";
+          controlText.style.lineHeight = "38px";
+          controlText.style.paddingLeft = "5px";
+          controlText.style.paddingRight = "5px";
+          controlText.innerHTML = "Get route";
+          controlUI.appendChild(controlText);
+
+          // Setup click event
+          controlUI.addEventListener("click", function() {
+            calculate_route();
+          });
+        }
+
+        // Create the DIV to hold the control and call the CenterControl()
+        // constructor passing in this DIV.
+        var centerControlDiv = document.createElement("div");
+        var centerControl = new CenterControl(centerControlDiv, map);
+
+        centerControlDiv.index = 1;
+        map.controls[google.maps.ControlPosition.TOP_CENTER].push(
+          centerControlDiv
+        );
       }
-    }
-  </script>
-  <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBICA5nyVzj79DYqnRinnxvhADVzyKjX_g&callback=initMap">
     </script>
-</body>
+    <script
+      async
+      defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBICA5nyVzj79DYqnRinnxvhADVzyKjX_g&callback=initMap"
+    ></script>
+  </body>
 </html>
