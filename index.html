@@ -346,8 +346,35 @@
         var direction_display = new google.maps.DirectionsRenderer();
         var direction_service = new google.maps.DirectionsService();
 
-        var pointA = new google.maps.LatLng(43.638221, -79.38099);
-        var pointB = new google.maps.LatLng(43.658221, -79.37099);
+        // Case 1
+        // From Eaton Centre
+        // To Pacific Mall
+        var pointA_1 = new google.maps.LatLng(43.6544, -79.3807);
+        var pointB_1 = new google.maps.LatLng(43.8261, -79.3064);
+
+        // Case 2
+        // From Holiday Inn Express Toronto Downtown
+        // To Toronto Pan Am Sports Centre
+        var pointA_2 = new google.maps.LatLng(43.778, -79.3442);
+        var pointB_2 = new google.maps.LatLng(43.652409, -79.372935);
+
+        // Case 3
+        // From Rob's No Frills
+        // To RBC Waterpark Place
+        var pointA_3 = new google.maps.LatLng(43.6712314, -79.3778924);
+        var pointB_3 = new google.maps.LatLng(43.641, -79.3791);
+
+        // Case 4
+        // From Fahrenheit Coffee
+        // To Fairview Mall
+        var pointA_4 = new google.maps.LatLng(43.7903, -79.1933);
+        var pointB_4 = new google.maps.LatLng(43.652088, -79.37279);
+
+        // Case 5
+        // From Jane Finch Mall
+        // To Midland and Eglinton Plaza
+        var pointA_5 = new google.maps.LatLng(43.7564, -79.5149);
+        var pointB_5 = new google.maps.LatLng(43.7348347, -79.2596652);
 
         direction_display.setMap(map);
 
@@ -391,7 +418,26 @@
           controlUI.appendChild(controlText);
 
           // Setup click event
+          pointA = pointA_1;
+          pointB = pointB_1;
+
           controlUI.addEventListener("click", function() {
+            if (pointA == pointA_1) {
+              pointA = pointA_2;
+              pointB = pointB_2;
+            } else if (pointA == pointA_2) {
+              pointA = pointA_3;
+              pointB = pointB_3;
+            } else if (pointA == pointA_3) {
+              pointA = pointA_4;
+              pointB = pointB_4;
+            } else if (pointA == pointA_4) {
+              pointA = pointA_5;
+              pointB = pointB_5;
+            } else {
+              pointA = pointA_1;
+              pointB = pointB_1;
+            }
             calculate_route();
           });
         }
