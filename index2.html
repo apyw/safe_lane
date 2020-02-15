@@ -328,43 +328,7 @@
           }
         });
 
-        // set as pointA (from...)
-        var pointA_input = document.getElementById("pointA-input");
-        var From_Box = new google.maps.places.SearchBox(pointA_input);
-        map.controls[google.maps.ControlPosition.LEFT_TOP].push(pointA_input);
-
-        var autocomplete_A = new google.maps.places.Autocomplete(pointA_input);
-
-        // set as pointB (to...)
-        var pointB_input = document.getElementById("pointB-input");
-        var To_Box = new google.maps.places.SearchBox(pointB_input);
-        map.controls[google.maps.ControlPosition.LEFT_TOP].push(pointB_input);
-
-        var autocomplete_B = new google.maps.places.Autocomplete(pointB_input);
-
-        // Obtain routes
-        var direction_display = new google.maps.DirectionsRenderer();
-        var direction_service = new google.maps.DirectionsService();
-
-        var pointA = new google.maps.LatLng(43.638221, -79.38099);
-        var pointB = new google.maps.LatLng(43.658221, -79.37099);
-
-        direction_display.setMap(map);
-
-        function calculate_route() {
-          var request = {
-            origin: pointA,
-            destination: pointB,
-            travelMode: "DRIVING"
-          };
-
-          direction_service.route(request, function(result, status) {
-            if (status == "OK") {
-              direction_display.setDirections(result);
-            }
-          });
-        }
-
+        //button
         function CenterControl(controlDiv, map) {
           // CSS for the control border
           var controlUI = document.createElement("div");
@@ -405,6 +369,81 @@
         map.controls[google.maps.ControlPosition.TOP_CENTER].push(
           centerControlDiv
         );
+
+        // set as pointA (from...)
+        var pointA_input = document.getElementById("pointA-input");
+        var From_Box = new google.maps.places.SearchBox(pointA_input);
+        map.controls[google.maps.ControlPosition.LEFT_TOP].push(pointA_input);
+
+        var autocomplete_A = new google.maps.places.Autocomplete(pointA_input);
+
+        // set as pointB (to...)
+        var pointB_input = document.getElementById("pointB-input");
+        var To_Box = new google.maps.places.SearchBox(pointB_input);
+        map.controls[google.maps.ControlPosition.LEFT_TOP].push(pointB_input);
+
+        var autocomplete_B = new google.maps.places.Autocomplete(pointB_input);
+
+        // geocode
+        console.log("DB1")
+        var geocoder = new google.maps.Geocoder();
+        console.log("DB2")
+        var address_A = autocomplete_A;
+        console.log(autocomplete_A)
+        console.log("DB3")
+        var address_B = autocomplete_B;
+        console.log(autocomplete_B)
+        console.log("DB4")
+
+
+        geocoder.geocode({ address: address_A }, function(results, status) {
+            console.log("DB5")
+          if (status == google.maps.GeocoderStatus.OK) {
+            console.log("DB6")
+            var latitude_A = results[0].geometry.location.latitude;
+            var longitude_A = results[0].geometry.location.longitude;
+            alert(latitude);
+          }
+        });
+        console.log("DB7")
+        geocoder.geocode({ address: address_B }, function(results, status) {
+            console.log("DB8")
+          if (status == google.maps.GeocoderStatus.OK) {
+            console.log("DB9")
+            var latitude_B = results[0].geometry.location.latitude;
+            var longitude_B = results[0].geometry.location.longitude;
+            alert(latitude);
+          }
+        });
+
+        // Obtain routes
+        console.log("DB10")
+        var direction_display = new google.maps.DirectionsRenderer();
+        console.log("DB11")
+        var direction_service = new google.maps.DirectionsService();
+        //console.log(latitude_A);
+       // console.log(longitude_A)
+        var pointA = new google.maps.LatLng(latitude_A, longitude_A);
+        //var pointA = new google.maps.LatLng(40.658221, 81.658221)
+        var pointB = new google.maps.LatLng(43.658221, -79.37099);
+
+        direction_display.setMap(map);
+
+        function calculate_route() {
+          var request = {
+            origin: pointA,
+            destination: pointB,
+            travelMode: "DRIVING"
+          };
+
+          direction_service.route(request, function(result, status) {
+            if (status == "OK") {
+              direction_display.setDirections(result);
+            }
+          });
+        }
+
+       
       }
     </script>
     <script
@@ -412,5 +451,6 @@
       defer
       src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyBICA5nyVzj79DYqnRinnxvhADVzyKjX_g&callback=initMap"
     ></script>
+
   </body>
 </html>
