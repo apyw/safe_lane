@@ -14,7 +14,7 @@ controlUI.addEventListener("click", function () {
 
     console.log(url_A);
     console.log(url_B);
-    request_A(url_A);
+    request_A(url_A, );
     request_B(url_B);
 });
         

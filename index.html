@@ -27,14 +27,30 @@
     <input id="pointA-input" class="controls" type="text" placeholder="From" />
     <input id="pointB-input" class="controls" type="text" placeholder="To" />
 
+    <div class="input-color">
+      <div class="text">High collision frequency</div>
+      <div class="color-box" style="background-color: #FE0000;"></div>
+    </div>
+
+    <div class="input-color">
+      <div class="text">Medium collision frequency</div>
+      <div class="color-box" style="background-color: #FB9308;"></div>
+    </div>
+
+    <div class="input-color">
+      <div class="text">Low collision frequency</div>
+      <div class="color-box" style="background-color: #FCE621;"></div>
+    </div>
+
     <div id="map"></div>
 
     <script>
       function initMap() {
         // Map options
         var options = {
-          zoom: 13,
-          center: { lat: 43.7, lng: -79.3 },
+          zoom: 12,
+          min_zoom: 11,
+          center: { lat: 43.75, lng: -79.4 },
           // style designed through
           styles: [
             {
@@ -177,12 +193,12 @@
             },
             {
               featureType: "transit",
-              elementType: "geometry",
-              stylers: [
-                {
-                  color: "#2f3948"
-                }
-              ]
+              elementType: "geometry"
+              //stylers: [
+              //{
+              //color: "#2f3948"
+              //}
+              //]
             },
             {
               featureType: "transit.station",
@@ -235,8 +251,253 @@
           },
           {
             coords: { lat: 43.63774, lng: -79.4589 },
-            iconImage: "images/marker_yellow.png",
+            iconImage: "images/marker_red.png",
             content: "<h3>Lake Shore Bv W, Colborne Lodge Dr</h3>"
+          },
+          {
+            coords: { lat: 43.73157, lng: -79.2684 },
+            iconImage: "images/marker_red.png",
+            content: "<h3>Eglinton Ave E,Kennedy Rd</h3>"
+          },
+          {
+            coords: { lat: 43.79816, lng: -79.4185 },
+            iconImage: "images/marker_red.png",
+            content: "<h3>Steeles Ave W,Yonge St</h3>"
+          },
+          {
+            coords: { lat: 43.74941, lng: -79.2755 },
+            iconImage: "images/marker_red.png",
+            content: "<h3>Kennedy Rd,Lawrence Ave E</h3>"
+          },
+          {
+            coords: { lat: 43.77543, lng: -79.348 },
+            iconImage: "images/marker_red.png",
+            content: "<h3>Don Mills Rd,Sheppard Ave E</h3>"
+          },
+          {
+            coords: { lat: 43.7568, lng: -79.518 },
+            iconImage: "images/marker_red.png",
+            content: "<h3>Finch Ave W,Jane St</h3>"
+          },
+          {
+            coords: { lat: 43.82066, lng: -79.3251 },
+            iconImage: "images/marker_red.png",
+            content: "<h3>Steeles Ave E,Warden Ave</h3>"
+          },
+          {
+            coords: { lat: 43.82365, lng: -79.3094 },
+            iconImage: "images/marker_red.png",
+            content: "<h3>Kennedy Rd,Steeles Ave E</h3>"
+          },
+          {
+            coords: { lat: 43.7706, lng: -79.3654 },
+            iconImage: "images/marker_red.png",
+            content: "<h3>Leslie St,Sheppard Ave E</h3>"
+          },
+          {
+            coords: { lat: 43.758366, lng: -79.335892 },
+            iconImage: "images/marker_red.png",
+            content: "<h3>DVP at Yorkmills</h3>"
+          },
+          {
+            coords: { lat: 43.75206, lng: -79.542554 },
+            iconImage: "images/marker_orange.png",
+            content: "<h3>Finch W, Weston</h3>"
+          },
+          {
+            coords: { lat: 43.739396, lng: -79.513189 },
+            iconImage: "images/marker_orange.png",
+            content: "<h3>Sheppard W, Jane St.</h3>"
+          },
+          {
+            coords: { lat: 43.649618, lng: -79.431448 },
+            iconImage: "images/marker_orange.png",
+            content: "<h3>Dundas W, Dufferin</h3>"
+          },
+          {
+            coords: { lat: 43.66846, lng: -79.43905 },
+            iconImage: "images/marker_orange.png",
+            content: "<h3>Dufferin St, Dupont St</h3>"
+          },
+          {
+            coords: { lat: 43.67469, lng: -79.396601 },
+            iconImage: "images/marker_orange.png",
+            content: "<h3>Avenue Rd, Davenport Rd</h3>"
+          },
+          {
+            coords: { lat: 43.650031, lng: -79.386414 },
+            iconImage: "images/marker_orange.png",
+            content: "<h3>Richmond St W, University Ave</h3>"
+          },
+          {
+            coords: { lat: 43.640015, lng: -79.380157 },
+            iconImage: "images/marker_orange.png",
+            content: "<h3>Harbour Sq, Queen's Quay</h3>"
+          },
+          {
+            coords: { lat: 43.657992, lng: -79.353801 },
+            iconImage: "images/marker_orange.png",
+            content: "<h3>DVP at Queen St E</h3>"
+          },
+          {
+            coords: { lat: 43.723001, lng: -79.330174 },
+            iconImage: "images/marker_orange.png",
+            content: "<h3>DVP at Eglinton</h3>"
+          },
+          {
+            coords: { lat: 43.779649, lng: -79.345707 },
+            iconImage: "images/marker_orange.png",
+            content: "<h3>Fairview Mall Dr</h3>"
+          },
+          {
+            coords: { lat: 43.793087, lng: -79.331412 },
+            iconImage: "images/marker_orange.png",
+            content: "<h3>Finch, Victoria Park</h3>"
+          },
+          {
+            coords: { lat: 43.727549, lng: -79.382261 },
+            iconImage: "images/marker_orange.png",
+            content: "<h3>Lawrence E, Bayview Ave</h3>"
+          },
+          {
+            coords: { lat: 43.805993, lng: -79.383510 },
+            iconImage: "images/marker_orange.png",
+            content: "<h3>Steeles Ave E, Bestview Dr</h3>"
+          },
+          {
+            coords: { lat: 43.807743, lng: -79.376133},
+            iconImage: "images/marker_yellow.png",
+            content: "<h3>Steeles Ave E, Bluffwoord Dr</h3>"
+          },
+          {
+            coords: { lat: 43.795634, lng: -79.380667 },
+            iconImage: "images/marker_yellow.png",
+            content: "<h3>Cummer Ave</h3>"
+          },
+          {
+            coords: { lat: 43.790690, lng: -79.362920},
+            iconImage: "images/marker_yellow.png",
+            content: "<h3>Finch Ave, Trudy Rd</h3>"
+          },
+          {
+            coords: { lat: 43.788623, lng: -79.4099},
+            iconImage: "images/marker_orange.png",
+            content: "<h3>Cummer Ave, Willowdale Ave</h3>"
+          },
+          {
+            coords: { lat: 43.77964, lng: -79.415512},
+            iconImage: "images/marker_orange.png",
+            content: "<h3>Finch Ave E, Yonge St</h3>"
+          },
+          {
+            coords: { lat: 43.773756, lng: -79.442962},
+            iconImage: "images/marker_orange.png",
+            content: "<h3>Finch Ave W, Bathurst St</h3>"
+          },
+          {
+            coords: { lat: 43.790690, lng: -79.362920},
+            iconImage: "images/marker_yellow.png",
+            content: "<h3>Finch Ave, Trudy Rd</h3>"
+          },
+          {
+            coords: { lat: 43.754421, lng: -79.463734},
+            iconImage: "images/marker_yellow.png",
+            content: "<h3>Dufferin St, Waterloo Ave</h3>"
+          },
+          {
+            coords: { lat: 43.790690, lng: -79.362920},
+            iconImage: "images/marker_yellow.png",
+            content: "<h3>Finch Ave, Trudy Rd</h3>"
+          },
+          {
+            coords: { lat: 43.790690, lng: -79.362920},
+            iconImage: "images/marker_yellow.png",
+            content: "<h3>Finch Ave, Trudy Rd</h3>"
+          },
+          {
+            coords: { lat: 43.645216, lng: -79.382461},
+            iconImage: "images/marker_red.png",
+            content: "<h3>Front St W, York St</h3>"
+          },
+          {
+            coords: { lat: 43.646728, lng: -79.395389},
+            iconImage: "images/marker_orange.png",
+            content: "<h3>Spadina Ave, Adelaide St</h3>"
+          },
+          {
+            coords: { lat: 43.649106, lng: -79.385923},
+            iconImage: "images/marker_orange.png",
+            content: "<h3>University Ave, Adelaide St</h3>"
+          },
+          {
+            coords: { lat: 43.650828, lng: -79.386616},
+            iconImage: "images/marker_orange.png",
+            content: "<h3>Queen St, University Ave</h3>"
+          },
+          {
+            coords: { lat: 43.655394, lng: -79.388634},
+            iconImage: "images/marker_orange.png",
+            content: "<h3>University Ave, Edward St</h3>"
+          },
+          {
+            coords: { lat: 43.656325, lng: -79.288832},
+            iconImage: "images/marker_yellow.png",
+            content: "<h3>University Ave, Elm St</h3>"
+          },
+          {
+            coords: { lat: 43.657954, lng: -79.399906},
+            iconImage: "images/marker_yellow.png",
+            content: "<h3>College St, Spadina Ave</h3>"
+          },
+          {
+            coords: { lat: 43.658835, lng: -79.3398163},
+            iconImage: "images/marker_yellow.png",
+            content: "<h3>College St, Huron St</h3>"
+          },
+          {
+            coords: { lat: 43.670, lng: -79.429012},
+            iconImage: "images/marker_orange.png",
+            content: "<h3>Dupont St, Ossington Rd</h3>"
+          },
+          {
+            coords: { lat: 43.668448, lng: -79.439012},
+            iconImage: "images/marker_orange.png",
+            content: "<h3>Dupont St, Dufferine St</h3>"
+          },
+          {
+            coords: { lat: 43.71414, lng: -79.454520},
+            iconImage: "images/marker_yellow.png",
+            content: "<h3>Dufferin St, Lawrence Ave E</h3>"
+          },
+          {
+            coords: { lat: 43.704583, lng: -79.408531},
+            iconImage: "images/marker_yellow.png",
+            content: "<h3>Avenue Rd, Eglinton Ave</h3>"
+          },
+          {
+            coords: { lat: 43.700197, lng: -79.516395},
+            iconImage: "images/marker_orange.png",
+            content: "<h3>Lawrence Ave, Weston Rd</h3>"
+          },
+          {
+            coords: { lat: 43.701944, lng: -79.575767},
+            iconImage: "images/marker_yellow.png",
+            content: "<h3>MartinGrove Rd, Belfield Rd</h3>"
+          },
+          {
+            coords: { lat: 43.873809, lng: -79.26},
+            iconImage: "images/marker_orange.png",
+            content: "<h3>Markham Rd, ON-7</h3>"
+          },
+          {
+            coords: { lat: 43.793934, lng: -79.238792},
+            iconImage: "images/marker_yellow.png",
+            content: "<h3>Markham Rd, Sheppard Ave E</h3>"
+          },
+          {
+            coords: { lat: 43.816247, lng: -79.211073},
+            iconImage: "images/marker_orange.png",
+            content: "<h3>Morningside Ave, Sewells Rd</h3>"
           }
         ];
 
@@ -343,8 +604,18 @@
         var autocomplete_B = new google.maps.places.Autocomplete(pointB_input);
 
         // Obtain routes
-        var direction_display = new google.maps.DirectionsRenderer();
+        //var direction_display = new google.maps.DirectionsRenderer();
+        var direction_display = new google.maps.DirectionsRenderer({
+          polylineOptions: {
+            strokeColor: "white"
+          }
+        });
         var direction_service = new google.maps.DirectionsService();
+        var fast_display = new google.maps.DirectionsRenderer({
+          polylineOptions: {
+            strokeColor: "blue"
+          }
+        });
 
         // Case 1
         // From Eaton Centre
@@ -353,8 +624,8 @@
         var pointB_1 = new google.maps.LatLng(43.8261, -79.3064);
 
         // Case 2
-        // From Holiday Inn Express Toronto Downtown
-        // To Toronto Pan Am Sports Centre
+        // From Toronto Pan Am Sports Centre
+        // To Holiday Inn Express Toronto Downtown
         var pointA_2 = new google.maps.LatLng(43.778, -79.3442);
         var pointB_2 = new google.maps.LatLng(43.652409, -79.372935);
 
@@ -376,15 +647,43 @@
         var pointA_5 = new google.maps.LatLng(43.7564, -79.5149);
         var pointB_5 = new google.maps.LatLng(43.7348347, -79.2596652);
 
+        //way point test edited by Trinity
+        var f1 = new google.maps.LatLng(43.742097, -79.309757);
+        var s1 = new google.maps.LatLng(43.783254, -79.288275);
+        var f2 = new google.maps.LatLng(43.755867, -79.34713);
+        var s2 = new google.maps.LatLng(43.737147, -79.343499);
+
+        var f4 = new google.maps.LatLng(43.757891, -79.315327);
+        var s4 = new google.maps.LatLng(43.763349, -79.291433);
+
         direction_display.setMap(map);
 
+        // safe- white original: blue
+        function calculate_safe_route(first, second) {
+          var request = {
+            origin: pointA,
+            destination: pointB,
+            //test for waypoints: edited by Trinity
+            provideRouteAlternatives: true,
+            waypoints: [
+              { location: first, stopover: false },
+              { location: second, stopover: false }
+            ],
+            optimizeWaypoints: true,
+            travelMode: "DRIVING"
+          };
+          direction_service.route(request, function(result, status) {
+            if (status == "OK") {
+              direction_display.setDirections(result);
+            }
+          });
+        }
         function calculate_route() {
           var request = {
             origin: pointA,
             destination: pointB,
             travelMode: "DRIVING"
           };
-
           direction_service.route(request, function(result, status) {
             if (status == "OK") {
               direction_display.setDirections(result);
@@ -401,7 +700,7 @@
           controlUI.style.boxShadow = "0 2px 6px rgba(0,0,0,.3)";
           controlUI.style.cursor = "pointer";
           controlUI.style.marginTop = "10px";
-          controlUI.style.marginLeft = "100px";
+          controlUI.style.marginLeft = "128px";
           controlUI.style.textAlign = "center";
           controlUI.title = "Click to recenter the map";
           controlDiv.appendChild(controlUI);
@@ -410,11 +709,11 @@
           var controlText = document.createElement("div");
           controlText.style.color = "rgb(25,25,25)";
           controlText.style.fontFamily = "Roboto,Arial,sans-serif";
-          controlText.style.fontSize = "16px";
+          controlText.style.fontSize = "18px";
           controlText.style.lineHeight = "38px";
-          controlText.style.paddingLeft = "5px";
-          controlText.style.paddingRight = "5px";
-          controlText.innerHTML = "Get route";
+          controlText.style.paddingLeft = "15px";
+          controlText.style.paddingRight = "15px";
+          controlText.innerHTML = "Get Route";
           controlUI.appendChild(controlText);
 
           // Setup click event
@@ -423,22 +722,28 @@
 
           controlUI.addEventListener("click", function() {
             if (pointA == pointA_1) {
+              calculate_safe_route(f1, s1);
               pointA = pointA_2;
               pointB = pointB_2;
             } else if (pointA == pointA_2) {
+              calculate_safe_route(f2, s2);
               pointA = pointA_3;
               pointB = pointB_3;
             } else if (pointA == pointA_3) {
+              calculate_route();
               pointA = pointA_4;
               pointB = pointB_4;
             } else if (pointA == pointA_4) {
+              calculate_safe_route(s4, f4);
               pointA = pointA_5;
               pointB = pointB_5;
             } else {
+              calculate_route();
               pointA = pointA_1;
               pointB = pointB_1;
             }
-            calculate_route();
+
+            //calculate_safe_route();
           });
         }
 

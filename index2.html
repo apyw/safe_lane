@@ -237,6 +237,46 @@
             coords: { lat: 43.63774, lng: -79.4589 },
             iconImage: "images/marker_yellow.png",
             content: "<h3>Lake Shore Bv W, Colborne Lodge Dr</h3>"
+          },
+          {
+            coords: { lat: 43.73157, lng: -79.2684},
+            iconImage: "images/marker_yellow.png",
+            content: "<h3>Eglinton Ave E,Kennedy Rd</h3>"
+          },
+          {
+            coords: { lat: 43.79816, lng: -79.4185},
+            iconImage: "images/marker_yellow.png",
+            content: "<h3>Steeles Ave W,Yonge St</h3>"
+          },
+          {
+            coords: { lat: 43.74941, lng: -79.2755},
+            iconImage: "images/marker_yellow.png",
+            content: "<h3>Kennedy Rd,Lawrence Ave E</h3>"
+          },
+          {
+            coords: { lat: 43.77543, lng: -79.3480},
+            iconImage: "images/marker_yellow.png",
+            content: "<h3>Don Mills Rd,Sheppard Ave E</h3>"
+          },
+          {
+            coords: { lat: 43.75680, lng: -79.5180},
+            iconImage: "images/marker_yellow.png",
+            content: "<h3>Finch Ave W,Jane St</h3>"
+          },
+          {
+            coords: { lat: 43.82066, lng: -79.3251},
+            iconImage: "images/marker_yellow.png",
+            content: "<h3>Steeles Ave E,Warden Ave</h3>"
+          },
+          {
+            coords: { lat: 43.82365, lng: -79.3094},
+            iconImage: "images/marker_yellow.png",
+            content: "<h3>Kennedy Rd,Steeles Ave E</h3>"
+          },
+          {
+            coords: { lat: 43.77060, lng: -79.3654},
+            iconImage: "images/marker_yellow.png",
+            content: "<h3>Leslie St,Sheppard Ave E</h3>"
           }
         ];
 
@@ -328,7 +368,44 @@
           }
         });
 
-        //button
+        // set as pointA (from...)
+        var pointA_input = document.getElementById("pointA-input");
+        var From_Box = new google.maps.places.SearchBox(pointA_input);
+        map.controls[google.maps.ControlPosition.LEFT_TOP].push(pointA_input);
+
+        var autocomplete_A = new google.maps.places.Autocomplete(pointA_input);
+
+        // set as pointB (to...)
+        var pointB_input = document.getElementById("pointB-input");
+        var To_Box = new google.maps.places.SearchBox(pointB_input);
+        map.controls[google.maps.ControlPosition.LEFT_TOP].push(pointB_input);
+
+        var autocomplete_B = new google.maps.places.Autocomplete(pointB_input);
+
+        // Obtain routes
+        var direction_display = new google.maps.DirectionsRenderer();
+        var direction_service = new google.maps.DirectionsService();
+
+        direction_display.setMap(map);
+
+        function calculate_route() {
+          var request = {
+            origin: pointA,
+            destination: pointB,
+            travelMode: "DRIVING"
+          };
+
+          direction_service.route(request, function(result, status) {
+            if (status == "OK") {
+              direction_display.setDirections(result);
+            }
+          });
+        }
+
+        // Setup initial values
+        var pointA = new google.maps.LatLng(Lat_A, Lng_A);
+        var pointB = new google.maps.LatLng(Lat_B, Lng_B);
+
         function CenterControl(controlDiv, map) {
           // CSS for the control border
           var controlUI = document.createElement("div");
@@ -354,11 +431,30 @@
           controlText.innerHTML = "Get route";
           controlUI.appendChild(controlText);
 
-          // Setup click event
           controlUI.addEventListener("click", function() {
+            console.log(pointA_input.value);
+            pointA_corrected = pointA_input.value.replace(/ /g, "%20");
+            console.log(pointA_corrected);
+
+            console.log(pointB_input.value);
+            pointB_corrected = pointB_input.value.replace(/ /g, "%20");
+            console.log(pointB_corrected);
+            url_A =
+              "https://maps.googleapis.com/maps/api/geocode/json?address=" +
+              pointA_corrected +
+              "&key=AIzaSyDUgE1CKLtTK6QXOJoo3BnsFdje_uFJYXo";
+            url_B =
+              "https://maps.googleapis.com/maps/api/geocode/json?address=" +
+              pointB_corrected +
+              "&key=AIzaSyDUgE1CKLtTK6QXOJoo3BnsFdje_uFJYXo";
+
+            console.log(url_A);
+            console.log(url_B);
             calculate_route();
           });
         }
+
+        
 
         // Create the DIV to hold the control and call the CenterControl()
         // constructor passing in this DIV
@@ -369,81 +465,6 @@
         map.controls[google.maps.ControlPosition.TOP_CENTER].push(
           centerControlDiv
         );
-
-        // set as pointA (from...)
-        var pointA_input = document.getElementById("pointA-input");
-        var From_Box = new google.maps.places.SearchBox(pointA_input);
-        map.controls[google.maps.ControlPosition.LEFT_TOP].push(pointA_input);
-
-        var autocomplete_A = new google.maps.places.Autocomplete(pointA_input);
-
-        // set as pointB (to...)
-        var pointB_input = document.getElementById("pointB-input");
-        var To_Box = new google.maps.places.SearchBox(pointB_input);
-        map.controls[google.maps.ControlPosition.LEFT_TOP].push(pointB_input);
-
-        var autocomplete_B = new google.maps.places.Autocomplete(pointB_input);
-
-        // geocode
-        console.log("DB1")
-        var geocoder = new google.maps.Geocoder();
-        console.log("DB2")
-        var address_A = autocomplete_A;
-        console.log(autocomplete_A)
-        console.log("DB3")
-        var address_B = autocomplete_B;
-        console.log(autocomplete_B)
-        console.log("DB4")
-
-
-        geocoder.geocode({ address: address_A }, function(results, status) {
-            console.log("DB5")
-          if (status == google.maps.GeocoderStatus.OK) {
-            console.log("DB6")
-            var latitude_A = results[0].geometry.location.latitude;
-            var longitude_A = results[0].geometry.location.longitude;
-            alert(latitude);
-          }
-        });
-        console.log("DB7")
-        geocoder.geocode({ address: address_B }, function(results, status) {
-            console.log("DB8")
-          if (status == google.maps.GeocoderStatus.OK) {
-            console.log("DB9")
-            var latitude_B = results[0].geometry.location.latitude;
-            var longitude_B = results[0].geometry.location.longitude;
-            alert(latitude);
-          }
-        });
-
-        // Obtain routes
-        console.log("DB10")
-        var direction_display = new google.maps.DirectionsRenderer();
-        console.log("DB11")
-        var direction_service = new google.maps.DirectionsService();
-        //console.log(latitude_A);
-       // console.log(longitude_A)
-        var pointA = new google.maps.LatLng(latitude_A, longitude_A);
-        //var pointA = new google.maps.LatLng(40.658221, 81.658221)
-        var pointB = new google.maps.LatLng(43.658221, -79.37099);
-
-        direction_display.setMap(map);
-
-        function calculate_route() {
-          var request = {
-            origin: pointA,
-            destination: pointB,
-            travelMode: "DRIVING"
-          };
-
-          direction_service.route(request, function(result, status) {
-            if (status == "OK") {
-              direction_display.setDirections(result);
-            }
-          });
-        }
-
-       
       }
     </script>
     <script
@@ -451,6 +472,5 @@
       defer
       src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyBICA5nyVzj79DYqnRinnxvhADVzyKjX_g&callback=initMap"
     ></script>
-
   </body>
 </html>

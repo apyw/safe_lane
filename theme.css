@@ -42,3 +42,27 @@
   font-size: 13px;
   font-weight: 300;
 }
+
+ul {
+  margin: 20px;
+}
+
+.input-color {
+  position: relative;
+}
+.input-color .text {
+  padding-left: 20px;
+  font-size: 13px;
+  width: 150px;
+  background-color: white;
+  padding-top: 3px;
+}
+.input-color .color-box {
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+  background-color: #ccc;
+  position: absolute;
+  left: 5px;
+  top: 5px;
+}
